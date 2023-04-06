@@ -3,35 +3,59 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Your Application Name", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Gost"))
+                        {
+                            <li>@Html.ActionLink("Meni", "Menu", "Menu")</li>
+                            <li>@Html.ActionLink("Rezervacija", "Reservation", "Reservation")</li>
+                        }
+                        else if (User.IsInRole("Zaposlenik"))
+                        {
+                            <li>@Html.ActionLink("Narudžba", "Order", "Order")</li>
+                            <li>@Html.ActionLink("Jelovnik", "Menu", "Menu")</li>
+                        }
+                        else if (User.IsInRole("Vlasnik"))
+                        {
+                            <li>@Html.ActionLink("Item 1", "Item1", "Item")</li>
+                            <li>@Html.ActionLink("Item 2", "Item2", "Item")</li>
+                            <li>@Html.ActionLink("Item 3", "Item3", "Item")</li>
+                        }
+                        <li>@Html.ActionLink("Odjava", "Logout", "Account")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Prijava", "Login", "Account")</li>
+                        <li>@Html.ActionLink("Registracija", "Register", "Account")</li>
+                    }
                 </ul>
             </div>
         </div>
     </div>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Your Application Name</p>
         </footer>
     </div>
 
