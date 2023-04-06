@@ -22,6 +22,12 @@ namespace RestorankoAPI.Controller
         public IEnumerable<Item> GetAll()
         {
             return _dbContext.Items;
+        }  
+        // id je samo parametar ez ekipa iscrpjen sam IIS me ubio 
+        [HttpGet("{id}")] 
+        public Item Get(int id)
+        {
+            return _dbContext.Items.FirstOrDefault(x => x.Iditem == id);
         }
     }
 }
