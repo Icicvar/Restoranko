@@ -1,14 +1,21 @@
-﻿namespace RestorankoAPI.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace RestorankoAPI.Models;
+
+public partial class User
 {
-    public class User
-    {
-        public int IDUser { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-    }
+    public int Iduser { get; set; }
 
+    public string FirstName { get; set; } = null!;
 
+    public string LastName { get; set; } = null!;
 
+    public string Email { get; set; } = null!;
+
+    public string Password { get; set; } = null!;
+
+    public virtual ICollection<Employment> Employments { get; } = new List<Employment>();
+
+    public virtual ICollection<Guest> Guests { get; } = new List<Guest>();
 }

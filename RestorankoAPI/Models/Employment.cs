@@ -1,9 +1,17 @@
-﻿namespace RestorankoAPI.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace RestorankoAPI.Models;
+
+public partial class Employment
 {
-    public class Employment
-    {
-        public int IDEmployment { get; set; }
-        public int UserID { get; set; }
-        public int JobID { get; set; }
-    }
+    public int Idemployment { get; set; }
+
+    public int? UserId { get; set; }
+
+    public int? JobId { get; set; }
+
+    public virtual Job? Job { get; set; }
+
+    public virtual User? User { get; set; }
 }

@@ -1,8 +1,15 @@
-﻿namespace RestorankoAPI.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace RestorankoAPI.Models;
+
+public partial class Guest
 {
-    public class Guest
-    {
-        public int IDGuest { get; set; }
-        public int UserID { get; set; }
-    }
+    public int Idguest { get; set; }
+
+    public int? UserId { get; set; }
+
+    public virtual ICollection<Reservation> Reservations { get; } = new List<Reservation>();
+
+    public virtual User? User { get; set; }
 }
