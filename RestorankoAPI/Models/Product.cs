@@ -1,9 +1,15 @@
-﻿namespace RestorankoAPI.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace RestorankoAPI.Models;
+
+public partial class Product
 {
-    public class Product
-    {
-        public int IDProduct { get; set; }
-        public string Name { get; set; }
-        public int Price { get; set; }
-    }
+    public int Idproduct { get; set; }
+
+    public string Name { get; set; } = null!;
+
+    public int Price { get; set; }
+
+    public virtual ICollection<Item> Items { get; } = new List<Item>();
 }
