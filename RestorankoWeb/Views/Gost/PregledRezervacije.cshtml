@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "PregledRezervacije";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+@model  List<RestorankoAPI.Models.Reservation>
+
+    <h2>Pregled stolova</h2>
+
+    @if (Model.Count == 0)
+    {
+        <p>Trenutno nema dostupnih stolova.</p>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Broj stola</th>
+                    <th>Broj sjedala</th>
+                    <th>Opis</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var table in Model)
+                {
+                    <tr>
+                        <td>@table.TableNumber</td>
+                        <td>@table.Seats</td>
+                        <td>@table.Description</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
