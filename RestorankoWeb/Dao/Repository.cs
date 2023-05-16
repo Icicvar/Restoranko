@@ -14,11 +14,11 @@ using System.Web.Mvc;
 
 namespace RestorankoWeb.Dao
 {
-    public class SqlRepository : IRepository
+     class Repository : IRepository
     {
         private readonly HttpClient httpClient;
 
-        public SqlRepository()
+        public Repository()
         {
             httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("http://localhost:5034");

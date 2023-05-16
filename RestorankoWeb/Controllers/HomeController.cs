@@ -15,8 +15,14 @@ namespace RestorankoWeb.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly Repository repository;
 
-        public string value = "";
+        public HomeController()
+        {
+            repository = new Repository();
+        }
+
+        //public string value = "";
 
         [HttpGet]
         public ActionResult Register()
@@ -25,13 +31,13 @@ namespace RestorankoWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(User user, SqlRepository sqlRepository)
+        public ActionResult Register(User user)
         {
             if (Request.HttpMethod == "POST")
             {
                 User er = new User();
-                
-                sqlRepository.CreateUser(user);
+
+                repository.CreateUser(user);
             }
             
                 return RedirectToAction("Welcome");
@@ -46,18 +52,13 @@ namespace RestorankoWeb.Controllers
         {
             return View();
         }
-        private readonly SqlRepository authApiClient;
-
-        public HomeController()
-        {
-            authApiClient = new SqlRepository();
-        }
+        
         [HttpPost]
         public async Task<ActionResult> Login(User user)
         {
             if (ModelState.IsValidField("email") && ModelState.IsValidField("password"))
             {
-                bool isAuthenticated = await authApiClient.Login(user);
+                bool isAuthenticated = await repository.Login(user);
 
                 if (isAuthenticated)
                 {
@@ -76,7 +77,7 @@ namespace RestorankoWeb.Controllers
             return View(user);
         }
         //[HttpPost]
-        //public ActionResult Login(User user, SqlRepository sqlRepository)
+        //public ActionResult Login(User user, Repository sqlRepository)
         //{
         //    sqlRepository.Login(user);
 
