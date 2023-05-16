@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<p>Vrijeme pripreme: <span id="timer">00:00:00</span></p>
+<button onclick="stopTimer()">Zaustavi</button>
+
+
+
+
+<section>
+    <script>
+        var timerInterval;
+        var startTime;
+        var elapsedTime = 0;
+
+        function startTimer() {
+            startTime = new Date().getTime();
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function updateTimer() {
+            var currentTime = new Date().getTime();
+            elapsedTime = currentTime - startTime;
+            displayTime(elapsedTime);
+        }
+
+        function displayTime(time) {
+            var seconds = Math.floor((time / 1000) % 60);
+            var minutes = Math.floor((time / (1000 * 60)) % 60);
+            var hours = Math.floor((time / (1000 * 60 * 60)) % 24);
+
+            var timeString = hours.toString().padStart(2, '0') + ':' +
+                minutes.toString().padStart(2, '0') + ':' +
+                seconds.toString().padStart(2, '0');
+
+            document.getElementById('timer').textContent = timeString;
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            elapsedTime = 0;
+        }
+    </script>
+
+</section>
