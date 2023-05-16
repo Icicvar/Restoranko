@@ -1,36 +1,94 @@
-﻿
+﻿﻿
 @model RestorankoWeb.Models.User
 @{
-    ViewBag.Title = "Login";
+ViewBag.Title = "Login";
+
 }
-@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ENROLLMENT</title>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="../../Content/StyleSheet.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Email)
-        </div>
-    </div>
 
-                                </div>
+    $(document).ready(function () {
+        $.ajax({
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <div class="checkbox">
-                @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe)
+            type: 'POST',
+            URL: '/Home/Home',
+            data: data,
+            dataType: 'JSON',
+            success: function (data) {
+                datadata = data.status
+                if (status == "1") {
+                    window.location.href = '@Url.Action("Login","Home")';
+                }
+            }
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <!------ Include the above in your HEAD tag ---------->
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="container register">
+            <div class="row">
+                <div class="col-md-3 register-left">
+                    <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+                    <h3>Welcome</h3>
+                    <p>This Example is for learning MVC Basic Login and Registration Using ADO.NET.</p>
+                </div>
+
+
+                <div class="tab-content" id="myTabContent">
+
+                    <h3 class="register-heading">Login </h3>
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.TextBoxFor(e => e.Email, new { id = "email", @class = "form-control", placeholder = "Your Email *" })
+                                @Html.ValidationMessageFor(e => e.Email)
+                            </div>
+                            <div class="form-group">
+                                @Html.PasswordFor(e => e.Password, new { id = "password", @class = "form-control", placeholder = "Password *" })
+                                <span id="result"></span>
+                                @Html.ValidationMessageFor(e => e.Password)
+                            </div>
+                            <div class="col-md-6">
+                                <input type="submit" class="btnLogin" value="Login" />
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-default">Prijava</button>
+            <script type="text/javascript">
+
+               $(function () {
+                     var msg = '@ViewData["result"]';
+                     if (msg == '1')
+                     {
+                         alert("User Details Inserted Successfully");
+                         window.location.href = "@Url.Action("Login", "Home")";
+                      }
+                  });
+            </script>
+            }
         </div>
-    </div>
-}
+    }
+</body>
+</html>
 
 

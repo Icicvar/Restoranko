@@ -1,4 +1,4 @@
-﻿using Microsoft.ApplicationBlocks.Data;
+﻿
 using Newtonsoft.Json;
 using RestorankoWeb.Models;
 using RestSharp;
@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Mvc;
 
 namespace RestorankoWeb.Dao
 {
@@ -32,7 +33,7 @@ namespace RestorankoWeb.Dao
             return Convert.ToInt32(SqlHelper.ExecuteScalar(cs, "checkUser", user.Email, user.Password)) == 0;
         }
 
-        public  void CreateUser(User user)
+        public void CreateUser(User user)
         {
             SqlHelper.ExecuteNonQuery(cs, "createUser", user.FirstName, user.LastName, user.Email, user.Password);
         }
