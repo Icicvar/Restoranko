@@ -1,6 +1,9 @@
 
 using API.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +19,17 @@ builder.Services.AddDbContext<RestorankoDbContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(o => {
+        var Key = Encoding.UTF8.GetBytes("12345678901234567890123456789012");
+        o.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            IssuerSigningKey = new SymmetricSecurityKey(Key)
+        };
+    });
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,8 +38,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 
