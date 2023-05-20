@@ -353,7 +353,7 @@ public partial class RestorankoDbContext : DbContext
             entity.Property(e => e.Iduser).HasColumnName("IDUser");
             entity.Property(e => e.Email)
                 .HasMaxLength(100)
-                .IsUnicode(false);
+                .IsUnicode(false).HasColumnName("Email");
             entity.Property(e => e.FirstName)
                 .HasMaxLength(50)
                 .IsUnicode(false);

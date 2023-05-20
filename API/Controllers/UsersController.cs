@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API.Models;
+using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow;
 
 namespace API.Controllers
 {
@@ -32,6 +33,34 @@ namespace API.Controllers
               return NotFound();
           }
             return await _context.Users.ToListAsync();
+        }
+
+        //[HttpGet]
+        //public async Task<ActionResult<User>> GetUser(string email , string pass)
+        //{
+        //    if (_context.Users == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    User u = new User();
+        //    var loginData = new {email = u.Email, password = u.Password };
+
+        //    var userr = await _context.Users.FindAsync(email);
+
+        //    if (userr == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return userr;
+        //}
+        [HttpGet("Login/{email}/{pass}")]
+        public async Task<ActionResult<IEnumerable<User>>> GetUsersByName(string email, string pass)
+        {      
+                var users = await _context.Users.Where(u => u.Email == email && u.Password == pass).ToListAsync();
+          
+                return Ok(users);      
+            
         }
 
         // GET: api/Users/5
