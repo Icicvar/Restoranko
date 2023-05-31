@@ -23,7 +23,5 @@ public partial class Order
 
     public virtual ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
 
-    public virtual Job? Waiter { get; set; }
-
-    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+    public virtual User? Waiter { get; set; }
 }

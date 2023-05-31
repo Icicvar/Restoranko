@@ -15,13 +15,17 @@ public partial class User
 
     public string Password { get; set; } = null!;
 
-    public virtual ICollection<Guest> Guests { get; set; } = new List<Guest>();
+    public int? UserTypeId { get; set; }
 
-    public virtual ICollection<Job> Jobs { get; set; } = new List<Job>();
+    public virtual ICollection<Item> Items { get; set; } = new List<Item>();
 
-    public virtual ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
+    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+
+    public virtual ICollection<Reservation> ReservationEmployees { get; set; } = new List<Reservation>();
+
+    public virtual ICollection<Reservation> ReservationGuests { get; set; } = new List<Reservation>();
 
     public virtual ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
 
-    public virtual ICollection<Guest> GuestsNavigation { get; set; } = new List<Guest>();
+    public virtual UserType? UserType { get; set; }
 }

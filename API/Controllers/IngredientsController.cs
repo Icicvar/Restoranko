@@ -13,9 +13,9 @@ namespace API.Controllers
     [ApiController]
     public class IngredientsController : ControllerBase
     {
-        private readonly RestorankoDbContext _context;
+        private readonly RestorankoDbUpdatedContext _context;
 
-        public IngredientsController(RestorankoDbContext context)
+        public IngredientsController(RestorankoDbUpdatedContext context)
         {
             _context = context;
         }
@@ -87,7 +87,7 @@ namespace API.Controllers
         {
           if (_context.Ingredients == null)
           {
-              return Problem("Entity set 'RestorankoDbContext.Ingredients'  is null.");
+              return Problem("Entity set 'RestorankoDbUpdatedContext.Ingredients'  is null.");
           }
             _context.Ingredients.Add(ingredient);
             try

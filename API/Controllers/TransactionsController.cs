@@ -13,9 +13,9 @@ namespace API.Controllers
     [ApiController]
     public class TransactionsController : ControllerBase
     {
-        private readonly RestorankoDbContext _context;
+        private readonly RestorankoDbUpdatedContext _context;
 
-        public TransactionsController(RestorankoDbContext context)
+        public TransactionsController(RestorankoDbUpdatedContext context)
         {
             _context = context;
         }
@@ -87,7 +87,7 @@ namespace API.Controllers
         {
           if (_context.Transactions == null)
           {
-              return Problem("Entity set 'RestorankoDbContext.Transactions'  is null.");
+              return Problem("Entity set 'RestorankoDbUpdatedContext.Transactions'  is null.");
           }
             _context.Transactions.Add(transaction);
             await _context.SaveChangesAsync();

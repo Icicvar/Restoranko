@@ -15,13 +15,13 @@ public partial class Reservation
 
     public int? GuestId { get; set; }
 
-    public int? UserId { get; set; }
+    public int? EmployeeId { get; set; }
 
-    public virtual Guest? Guest { get; set; }
+    public virtual User? Employee { get; set; }
+
+    public virtual User? Guest { get; set; }
 
     public virtual Order? Order { get; set; }
 
     public virtual Table? Table { get; set; }
-
-    public virtual User? User { get; set; }
 }

@@ -11,8 +11,6 @@ public partial class RecipeIngredient
 
     public decimal? Quantity { get; set; }
 
-    public string? Unit { get; set; }
-
     public virtual Ingredient Ingredient { get; set; } = null!;
 
     public virtual Recipe Recipe { get; set; } = null!;

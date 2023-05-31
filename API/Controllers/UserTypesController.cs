@@ -11,55 +11,55 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrdersController : ControllerBase
+    public class UserTypesController : ControllerBase
     {
         private readonly RestorankoDbUpdatedContext _context;
 
-        public OrdersController(RestorankoDbUpdatedContext context)
+        public UserTypesController(RestorankoDbUpdatedContext context)
         {
             _context = context;
         }
 
-        // GET: api/Orders
+        // GET: api/UserTypes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
+        public async Task<ActionResult<IEnumerable<UserType>>> GetUserTypes()
         {
-          if (_context.Orders == null)
+          if (_context.UserTypes == null)
           {
               return NotFound();
           }
-            return await _context.Orders.ToListAsync();
+            return await _context.UserTypes.ToListAsync();
         }
 
-        // GET: api/Orders/5
+        // GET: api/UserTypes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Order>> GetOrder(int id)
+        public async Task<ActionResult<UserType>> GetUserType(int id)
         {
-          if (_context.Orders == null)
+          if (_context.UserTypes == null)
           {
               return NotFound();
           }
-            var order = await _context.Orders.FindAsync(id);
+            var userType = await _context.UserTypes.FindAsync(id);
 
-            if (order == null)
+            if (userType == null)
             {
                 return NotFound();
             }
 
-            return order;
+            return userType;
         }
 
-        // PUT: api/Orders/5
+        // PUT: api/UserTypes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrder(int id, Order order)
+        public async Task<IActionResult> PutUserType(int id, UserType userType)
         {
-            if (id != order.Idorder)
+            if (id != userType.IduserType)
             {
                 return BadRequest();
             }
 
-            _context.Entry(order).State = EntityState.Modified;
+            _context.Entry(userType).State = EntityState.Modified;
 
             try
             {
@@ -67,7 +67,7 @@ namespace API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!OrderExists(id))
+                if (!UserTypeExists(id))
                 {
                     return NotFound();
                 }
@@ -80,44 +80,44 @@ namespace API.Controllers
             return NoContent();
         }
 
-        // POST: api/Orders
+        // POST: api/UserTypes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Order>> PostOrder(Order order)
+        public async Task<ActionResult<UserType>> PostUserType(UserType userType)
         {
-          if (_context.Orders == null)
+          if (_context.UserTypes == null)
           {
-              return Problem("Entity set 'RestorankoDbUpdatedContext.Orders'  is null.");
+              return Problem("Entity set 'RestorankoDbUpdatedContext.UserTypes'  is null.");
           }
-            _context.Orders.Add(order);
+            _context.UserTypes.Add(userType);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetOrder", new { id = order.Idorder }, order);
+            return CreatedAtAction("GetUserType", new { id = userType.IduserType }, userType);
         }
 
-        // DELETE: api/Orders/5
+        // DELETE: api/UserTypes/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOrder(int id)
+        public async Task<IActionResult> DeleteUserType(int id)
         {
-            if (_context.Orders == null)
+            if (_context.UserTypes == null)
             {
                 return NotFound();
             }
-            var order = await _context.Orders.FindAsync(id);
-            if (order == null)
+            var userType = await _context.UserTypes.FindAsync(id);
+            if (userType == null)
             {
                 return NotFound();
             }
 
-            _context.Orders.Remove(order);
+            _context.UserTypes.Remove(userType);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool OrderExists(int id)
+        private bool UserTypeExists(int id)
         {
-            return (_context.Orders?.Any(e => e.Idorder == id)).GetValueOrDefault();
+            return (_context.UserTypes?.Any(e => e.IduserType == id)).GetValueOrDefault();
         }
     }
 }

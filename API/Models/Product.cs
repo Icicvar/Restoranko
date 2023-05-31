@@ -11,11 +11,9 @@ public partial class Product
 
     public int Price { get; set; }
 
-    public virtual ICollection<Inventory> Inventories { get; set; } = new List<Inventory>();
+    public int? RecepieId { get; set; }
 
     public virtual ICollection<Item> Items { get; set; } = new List<Item>();
 
-    public virtual ICollection<ProductTime> ProductTimes { get; set; } = new List<ProductTime>();
-
-    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+    public virtual Recipe? Recepie { get; set; }
 }

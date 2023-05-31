@@ -13,9 +13,9 @@ namespace API.Controllers
     [ApiController]
     public class ProductTimesController : ControllerBase
     {
-        private readonly RestorankoDbContext _context;
+        private readonly RestorankoDbUpdatedContext _context;
 
-        public ProductTimesController(RestorankoDbContext context)
+        public ProductTimesController(RestorankoDbUpdatedContext context)
         {
             _context = context;
         }
@@ -87,7 +87,7 @@ namespace API.Controllers
         {
           if (_context.ProductTimes == null)
           {
-              return Problem("Entity set 'RestorankoDbContext.ProductTimes'  is null.");
+              return Problem("Entity set 'RestorankoDbUpdatedContext.ProductTimes'  is null.");
           }
             _context.ProductTimes.Add(productTime);
             await _context.SaveChangesAsync();

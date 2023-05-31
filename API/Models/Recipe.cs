@@ -5,7 +5,7 @@ namespace API.Models;
 
 public partial class Recipe
 {
-    public int RecipeId { get; set; }
+    public int Idrecipe { get; set; }
 
     public string RecipeName { get; set; } = null!;
 
@@ -14,6 +14,8 @@ public partial class Recipe
     public string? RecipeInstructions { get; set; }
 
     public string? RecipeImage { get; set; }
+
+    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 
     public virtual ICollection<RecipeIngredient> RecipeIngredients { get; set; } = new List<RecipeIngredient>();
 }

@@ -9,15 +9,17 @@ public partial class Item
 
     public int Amount { get; set; }
 
-    public int? JobId { get; set; }
+    public int? EmpolyeeId { get; set; }
 
     public int? ProductId { get; set; }
 
     public int? OrderId { get; set; }
 
-    public virtual Job? Job { get; set; }
+    public virtual User? Empolyee { get; set; }
 
     public virtual Order? Order { get; set; }
 
     public virtual Product? Product { get; set; }
+
+    public virtual ICollection<ProductTime> ProductTimes { get; set; } = new List<ProductTime>();
 }

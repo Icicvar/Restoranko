@@ -13,9 +13,9 @@ namespace API.Controllers
     [ApiController]
     public class RecipesController : ControllerBase
     {
-        private readonly RestorankoDbContext _context;
+        private readonly RestorankoDbUpdatedContext _context;
 
-        public RecipesController(RestorankoDbContext context)
+        public RecipesController(RestorankoDbUpdatedContext context)
         {
             _context = context;
         }
@@ -54,7 +54,7 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRecipe(int id, Recipe recipe)
         {
-            if (id != recipe.RecipeId)
+            if (id != recipe.Idrecipe)
             {
                 return BadRequest();
             }
@@ -87,7 +87,7 @@ namespace API.Controllers
         {
           if (_context.Recipes == null)
           {
-              return Problem("Entity set 'RestorankoDbContext.Recipes'  is null.");
+              return Problem("Entity set 'RestorankoDbUpdatedContext.Recipes'  is null.");
           }
             _context.Recipes.Add(recipe);
             try
@@ -96,7 +96,7 @@ namespace API.Controllers
             }
             catch (DbUpdateException)
             {
-                if (RecipeExists(recipe.RecipeId))
+                if (RecipeExists(recipe.Idrecipe))
                 {
                     return Conflict();
                 }
@@ -106,7 +106,7 @@ namespace API.Controllers
                 }
             }
 
-            return CreatedAtAction("GetRecipe", new { id = recipe.RecipeId }, recipe);
+            return CreatedAtAction("GetRecipe", new { id = recipe.Idrecipe }, recipe);
         }
 
         // DELETE: api/Recipes/5
@@ -131,7 +131,7 @@ namespace API.Controllers
 
         private bool RecipeExists(int id)
         {
-            return (_context.Recipes?.Any(e => e.RecipeId == id)).GetValueOrDefault();
+            return (_context.Recipes?.Any(e => e.Idrecipe == id)).GetValueOrDefault();
         }
     }
 }

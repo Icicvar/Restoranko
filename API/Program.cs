@@ -1,4 +1,3 @@
-
 using API.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<RestorankoDbContext>(options =>
+builder.Services.AddDbContext<RestorankoDbUpdatedContext>(options =>
 {
     options.UseSqlServer("Name=ConnectionStrings:RestorankoConnStr");
 });

@@ -9,5 +9,7 @@ public partial class Ingredient
 
     public string IngredientName { get; set; } = null!;
 
+    public decimal Quantity { get; set; }
+
     public virtual ICollection<RecipeIngredient> RecipeIngredients { get; set; } = new List<RecipeIngredient>();
 }

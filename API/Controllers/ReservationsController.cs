@@ -13,9 +13,9 @@ namespace API.Controllers
     [ApiController]
     public class ReservationsController : ControllerBase
     {
-        private readonly RestorankoDbContext _context;
+        private readonly RestorankoDbUpdatedContext _context;
 
-        public ReservationsController(RestorankoDbContext context)
+        public ReservationsController(RestorankoDbUpdatedContext context)
         {
             _context = context;
         }
@@ -87,7 +87,7 @@ namespace API.Controllers
         {
           if (_context.Reservations == null)
           {
-              return Problem("Entity set 'RestorankoDbContext.Reservations'  is null.");
+              return Problem("Entity set 'RestorankoDbUpdatedContext.Reservations'  is null.");
           }
             _context.Reservations.Add(reservation);
             await _context.SaveChangesAsync();
