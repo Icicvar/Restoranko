@@ -133,6 +133,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Dao\IRepository.cs" />
     <Compile Include="Dao\RepositoryFactory.cs" />
     <Compile Include="Dao\Repository.cs" />
@@ -175,10 +176,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Home\Register.cshtml" />
-    <Content Include="Views\Home\SignOut.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Login\SignOut.cshtml" />
     <Content Include="Views\Home\Welcome.cshtml" />
+    <Content Include="Views\Home\Welcome1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

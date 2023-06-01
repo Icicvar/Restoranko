@@ -23,9 +23,11 @@ namespace RestorankoWeb.Models
         [Required]
         [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "E-mail id is not valid")]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "Please enter Password")]
         public string Password { get; set; }
 
-        public List<User> Usersinfo { get; set; }
+        public UserType UserType { get; set; }
 
     }
 }
