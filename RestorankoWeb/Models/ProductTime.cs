@@ -17,8 +17,8 @@ namespace RestorankoWeb.Models
 
         public DateTime EndTime { get; set; }
 
-        public virtual Item Item { get; set; } = null!;
+        public virtual Item Item { get; set; }
 
-        public virtual Order Order { get; set; } = null!;
+        public virtual Order Order { get; set; }
     }
 }
