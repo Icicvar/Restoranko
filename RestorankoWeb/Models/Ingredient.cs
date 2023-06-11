@@ -9,7 +9,7 @@ namespace RestorankoWeb.Models
     {
         public int IngredientId { get; set; }
 
-        public string IngredientName { get; set; } = null!;
+        public string IngredientName { get; set; } 
 
         public decimal Quantity { get; set; }
 
