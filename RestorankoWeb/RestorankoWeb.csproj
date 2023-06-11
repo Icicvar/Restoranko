@@ -141,6 +141,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Ingredient.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductTime.cs" />
+    <Compile Include="Models\Recipe.cs" />
+    <Compile Include="Models\RecipeIngredient.cs" />
+    <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Models\Table.cs" />
+    <Compile Include="Models\Transactionž.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
