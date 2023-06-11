@@ -24,5 +24,6 @@ namespace RestorankoWeb.Controllers
             IEnumerable<User> users = await repository.GetAllUsers();
             return View(users);
         }
+
     }
 }

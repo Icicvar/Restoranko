@@ -68,6 +68,11 @@ namespace RestorankoWeb.Controllers
 
                 if (isAuthenticated != null)
                 {
+                    if (isAuthenticated.UserType.UserTypeName =="Guest")
+                    {
+                        Session["Email"] = user.Email.ToString();
+                        return RedirectToAction("TablesList", "TableReservation", isAuthenticated);
+                    }
                     // Prijavljivanje uspješno
                     
                     Session["Email"] = user.Email.ToString();
