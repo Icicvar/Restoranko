@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API.Models;
+using API.BLClass;
+using API.Mapping;
 
 namespace API.Controllers
 {
@@ -13,6 +15,9 @@ namespace API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        
+
+
         private readonly RestorankoDbUpdatedContext _context;
 
         public UsersController(RestorankoDbUpdatedContext context)
@@ -22,13 +27,29 @@ namespace API.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<BLUser>>> GetUsers()
         {
-          if (_context.Users == null)
-          {
-              return NotFound();
-          }
-            return await _context.Users.ToListAsync();
+            if (_context.Users == null)
+            {
+                return NotFound();
+            }
+            var users = await _context.Users.Include("UserType").ToListAsync();
+
+            var mapedUsers = UserMapping.MapToBL(users);
+
+            return  Ok(mapedUsers);
+
+        }
+
+        [HttpGet("Login/{email}/{pass}")]
+        public async Task<ActionResult<IEnumerable<User>>> GetUsersByName(string email, string pass)
+        {
+            var users = await _context.Users.Include("UserType").Where(u => u.Email == email && u.Password == pass).ToListAsync();
+
+            var mapedUsers = UserMapping.MapToBL(users);
+
+            return Ok(mapedUsers);
+
         }
 
         // GET: api/Users/5

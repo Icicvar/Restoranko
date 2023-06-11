@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Models;
 
@@ -15,6 +16,7 @@ public partial class User
 
     public string Password { get; set; } = null!;
 
+    [ForeignKey("UserType")]
     public int? UserTypeId { get; set; }
 
     public virtual ICollection<Item> Items { get; set; } = new List<Item>();
@@ -27,5 +29,5 @@ public partial class User
 
     public virtual ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
 
-    public virtual UserType? UserType { get; set; }
+    public virtual  UserType? UserType { get; set; }
 }

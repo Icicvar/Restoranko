@@ -37,7 +37,7 @@ public partial class RestorankoDbUpdatedContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-    public virtual DbSet<UserType> UserTypes { get; set; }
+    public  DbSet<UserType> UserTypes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("name=ConnectionStrings:RestorankoConnStr");
@@ -242,8 +242,21 @@ public partial class RestorankoDbUpdatedContext : DbContext
                 .HasConstraintName("FK__Transacti__UserI__46E78A0C");
         });
 
+        modelBuilder.Entity<UserType>(entity =>
+        {
+            entity.HasKey(e => e.IduserType).HasName("PK__UserType__EA4074F28C4EE3A2");
+
+            entity.ToTable("UserType");
+
+            entity.Property(e => e.IduserType).HasColumnName("IDUserType");
+            entity.Property(e => e.UserTypeName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+        });
+
         modelBuilder.Entity<User>(entity =>
         {
+           
             entity.HasKey(e => e.Iduser).HasName("PK__User__EAE6D9DF0CC32A27");
 
             entity.ToTable("User");
@@ -263,22 +276,11 @@ public partial class RestorankoDbUpdatedContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.UserTypeId).HasColumnName("UserTypeID");
 
-            entity.HasOne(d => d.UserType).WithMany(p => p.Users)
-                .HasForeignKey(d => d.UserTypeId)
-                .HasConstraintName("FK__User__UserTypeID__398D8EEE");
+            //entity.HasOne(d => d.UserType).WithMany(p => p.Users)
+            //    .HasForeignKey(d => d.UserTypeId)
+            //    .HasConstraintName("FK__User__UserTypeID__398D8EEE");
         });
 
-        modelBuilder.Entity<UserType>(entity =>
-        {
-            entity.HasKey(e => e.IduserType).HasName("PK__UserType__EA4074F28C4EE3A2");
-
-            entity.ToTable("UserType");
-
-            entity.Property(e => e.IduserType).HasColumnName("IDUserType");
-            entity.Property(e => e.UserTypeName)
-                .HasMaxLength(50)
-                .IsUnicode(false);
-        });
 
         OnModelCreatingPartial(modelBuilder);
     }
