@@ -7,5 +7,10 @@ namespace RestorankoWeb.Models
 {
     public class Table
     {
+        public int Idtable { get; set; }
+
+        public int TableNumber { get; set; }
+
+        public virtual ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
     }
 }
