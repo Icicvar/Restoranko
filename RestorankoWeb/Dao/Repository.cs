@@ -70,7 +70,7 @@ namespace RestorankoWeb.Dao
             try
             {
                 // Slanje POST zahtjeva na API endpoint za provjeru autentičnosti
-                HttpResponseMessage response = await httpClient.PostAsJsonAsync("api/Users",user);
+                HttpResponseMessage response = await httpClient.PostAsJsonAsync("api/Users", user);
 
                 // Provjera statusnog koda odgovora
                 if (response.IsSuccessStatusCode)
